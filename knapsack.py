@@ -70,14 +70,23 @@ class Knapsack:
             total_value += value * key.value
         return total_value
 
+    @property
+    def total_weight(self):
+        total_weight = 0
+        for key, value in self.items.items():
+            # Need to get weight by using the key in the item_dict
+            total_weight += value * key.weight
+        return total_weight
+
     def empty(self):
         delattr(self, 'items')
 
 
-knapsack_file = pd.read_csv("knapsack.csv")
+knapsack_file = pd.read_csv("random_knapsack.csv")
 
 item_list = Item.ret_list(knapsack_file)
-knack = Knapsack(173)
+knack = Knapsack(10024)
 knack.pack_with_items(item_list)
 knack.plot()
-print(knack.total_value)
+print("The total value is {}".format(knack.total_value))
+print("The total weight is {}".format(knack.total_weight))
