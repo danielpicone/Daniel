@@ -1,13 +1,14 @@
-# This is another simple python script to test python and github
+# This is a simple python script to test python and github
+# Test using the online tutorial to learn Object-Oriented Programming
 
-import numpy as np
+def decorator_function(original_function):
+    def wrapper_function():
+        return original_function()
+    return wrapper_function
 
-random_numbers = np.random.rand(10)
-# FInd the mean
-print("The mean is " + str(np.mean(random_numbers)))
-# Find the median
-print("The median is "+ str(np.median(random_numbers)))
+def display():
+    print('display function ran')
 
-# This is another change
+decorated_display = decorator_function(display)
 
-# I want to change it in the current branch only
+decorated_display()
